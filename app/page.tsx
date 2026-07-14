@@ -11,9 +11,15 @@ const products = [
   { id: 6, name: "Mystery Object 06", price: 19, category: "Strange", color: "orange", shape: "blob" },
   { id: 7, name: "Mystery Object 07", price: 64, category: "Desk", color: "violet", shape: "loop" },
   { id: 8, name: "Mystery Object 08", price: 29, category: "Wear", color: "coral", shape: "orb" },
+  { id: 9, name: "Placeholder Pro Controller", price: 59, category: "Gaming", color: "mint", shape: "controller" },
+  { id: 10, name: "Placeholder RGB Keyboard", price: 89, category: "Gaming", color: "violet", shape: "keyboard" },
+  { id: 11, name: "Placeholder Level-Up Headset", price: 74, category: "Gaming", color: "coral", shape: "headset" },
+  { id: 12, name: "Placeholder Pocket Console", price: 129, category: "Gaming", color: "lemon", shape: "handheld" },
+  { id: 13, name: "Placeholder Speed Mouse", price: 42, category: "Gaming", color: "sky", shape: "mouse" },
+  { id: 14, name: "Placeholder Pixel Light", price: 36, category: "Gaming", color: "orange", shape: "pixel" },
 ];
 
-const categories = ["New", "Desk", "Wear", "Strange"];
+const categories = ["New", "Gaming", "Desk", "Wear", "Strange"];
 
 export default function Home() {
   const [category, setCategory] = useState("New");
@@ -122,6 +128,21 @@ export default function Home() {
           })}
         </div>
         {visibleProducts.length === 0 && <p className="emptyState">Nothing that cool yet. Try another search.</p>}
+      </section>
+
+      <section className="gamingPromo" aria-labelledby="gaming-title">
+        <div className="gamingCopy">
+          <p className="eyebrow">New side quest unlocked</p>
+          <h2 id="gaming-title">Player one<br />entered the shop.</h2>
+          <p>Controllers, keyboards, headsets, handhelds, and other desk-battle essentials. Still placeholders. Already overpowered.</p>
+          <button onClick={() => { setCategory("Gaming"); document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" }); }}>Shop gaming gear <span>→</span></button>
+        </div>
+        <div className="promoConsole" aria-hidden="true">
+          <span className="consoleScreen"><i>COOL<br />MODE</i></span>
+          <span className="consoleDpad">＋</span>
+          <span className="consoleButtons">● ●</span>
+          <b className="promoSticker">READY<br />PLAYER<br />COOL</b>
+        </div>
       </section>
 
       <section className="manifesto" id="about">
