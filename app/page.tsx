@@ -3,14 +3,14 @@
 import { useMemo, useState } from "react";
 
 const products = [
-  { id: 1, name: "Mystery Object 01", price: 38, category: "Desk", color: "coral", shape: "orb" },
-  { id: 2, name: "Mystery Object 02", price: 24, category: "Wear", color: "violet", shape: "arch" },
-  { id: 3, name: "Mystery Object 03", price: 52, category: "Strange", color: "lemon", shape: "bolt" },
-  { id: 4, name: "Mystery Object 04", price: 31, category: "Desk", color: "mint", shape: "stack" },
-  { id: 5, name: "Mystery Object 05", price: 46, category: "Wear", color: "sky", shape: "loop" },
-  { id: 6, name: "Mystery Object 06", price: 19, category: "Strange", color: "orange", shape: "blob" },
-  { id: 7, name: "Mystery Object 07", price: 64, category: "Desk", color: "violet", shape: "loop" },
-  { id: 8, name: "Mystery Object 08", price: 29, category: "Wear", color: "coral", shape: "orb" },
+  { id: 1, name: "Placeholder Blob Lamp", price: 38, category: "Desk", color: "coral", shape: "orb" },
+  { id: 2, name: "Placeholder Cloud Cap", price: 24, category: "Wear", color: "violet", shape: "arch" },
+  { id: 3, name: "Placeholder Bolt Sculpture", price: 52, category: "Strange", color: "lemon", shape: "bolt" },
+  { id: 4, name: "Placeholder Stack Tray", price: 31, category: "Desk", color: "mint", shape: "stack" },
+  { id: 5, name: "Placeholder Orbit Bag", price: 46, category: "Wear", color: "sky", shape: "loop" },
+  { id: 6, name: "Placeholder Wobble Vase", price: 19, category: "Strange", color: "orange", shape: "blob" },
+  { id: 7, name: "Placeholder Halo Clock", price: 64, category: "Desk", color: "violet", shape: "loop" },
+  { id: 8, name: "Placeholder Bubble Beanie", price: 29, category: "Wear", color: "coral", shape: "orb" },
   { id: 9, name: "Placeholder Pro Controller", price: 59, category: "Gaming", color: "mint", shape: "controller" },
   { id: 10, name: "Placeholder RGB Keyboard", price: 89, category: "Gaming", color: "violet", shape: "keyboard" },
   { id: 11, name: "Placeholder Level-Up Headset", price: 74, category: "Gaming", color: "coral", shape: "headset" },
@@ -70,7 +70,7 @@ export default function Home() {
       {searchOpen && (
         <div className="searchBar">
           <label htmlFor="product-search">Find a cool thing</label>
-          <input id="product-search" autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try “Mystery Object 04”" />
+          <input id="product-search" autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try “Gaming” or “Lamp”" />
           <button onClick={() => { setQuery(""); setSearchOpen(false); }} aria-label="Close search">×</button>
         </div>
       )}
