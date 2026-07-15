@@ -10,11 +10,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "COOLSTUFF — Objects worth talking about",
-    description: "A playful shop for controllers, keyboards, headsets, handhelds, and gaming setup gear.",
+    description: "A playful single-product storefront for one seriously cool placeholder gaming mouse.",
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
     openGraph: {
       title: "COOLSTUFF — Objects worth talking about",
-      description: "Controllers, keyboards, headsets, handhelds, and gaming setup gear.",
+      description: "One seriously cool placeholder gaming mouse.",
       type: "website",
       images: [{ url: imageUrl, width: 1536, height: 1024, alt: "COOLSTUFF — Objects worth talking about" }],
     },

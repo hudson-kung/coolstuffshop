@@ -3,22 +3,10 @@
 import { useMemo, useState } from "react";
 
 const products = [
-  { id: 1, name: "Placeholder Pro Controller", price: 59, category: "Controllers", color: "mint", shape: "controller" },
-  { id: 2, name: "Placeholder Arcade Pad", price: 72, category: "Controllers", color: "coral", shape: "controller" },
-  { id: 3, name: "Placeholder RGB Keyboard", price: 89, category: "PC Gear", color: "violet", shape: "keyboard" },
-  { id: 4, name: "Placeholder Speed Mouse", price: 42, category: "PC Gear", color: "sky", shape: "mouse" },
-  { id: 5, name: "Placeholder Level-Up Headset", price: 74, category: "Audio", color: "coral", shape: "headset" },
-  { id: 6, name: "Placeholder Battle Speakers", price: 99, category: "Audio", color: "mint", shape: "stack" },
-  { id: 7, name: "Placeholder Pocket Console", price: 129, category: "Controllers", color: "lemon", shape: "handheld" },
-  { id: 8, name: "Placeholder Pixel Light", price: 36, category: "Decor", color: "orange", shape: "pixel" },
-  { id: 9, name: "Placeholder Cable Dock", price: 28, category: "PC Gear", color: "lemon", shape: "arch" },
-  { id: 10, name: "Placeholder Thumbstick Caps", price: 18, category: "Controllers", color: "violet", shape: "orb" },
+  { id: 1, name: "Placeholder Gaming Mouse", price: 59, category: "Gaming Mouse", color: "sky", shape: "mouse" },
 ];
 
-const categories = ["All", "Controllers", "PC Gear", "Audio", "Decor"];
-
 export default function Home() {
-  const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [cart, setCart] = useState<number[]>([]);
@@ -26,11 +14,10 @@ export default function Home() {
 
   const visibleProducts = useMemo(() => {
     return products.filter((product) => {
-      const categoryMatch = category === "All" || product.category === category;
       const queryMatch = `${product.name} ${product.category}`.toLowerCase().includes(query.toLowerCase());
-      return categoryMatch && queryMatch;
+      return queryMatch;
     });
-  }, [category, query]);
+  }, [query]);
 
   const addToCart = (id: number) => setCart((items) => [...items, id]);
   const toggleFavorite = (id: number) =>
@@ -74,9 +61,9 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="heroCopy">
           <p className="eyebrow"><span>Gaming gear only</span> / Drop 001</p>
-          <h1>Gear worth<br />playing with.</h1>
-          <p className="heroText">Controllers, keyboards, headsets, handhelds, and desk-battle essentials. The products are placeholders. The gamer energy is real.</p>
-          <a className="primaryCta" href="#shop">See the gaming gear <span aria-hidden="true">↘</span></a>
+          <h1>One seriously<br />cool mouse.</h1>
+          <p className="heroText">A single placeholder gaming mouse with speed, style, and absolutely no unnecessary catalog clutter.</p>
+          <a className="primaryCta" href="#shop">See the mouse <span aria-hidden="true">↘</span></a>
         </div>
         <div className="heroArt" aria-label="Abstract colorful placeholder object">
           <span className="sticker stickerOne">NO BORING<br />OBJECTS</span>
@@ -94,14 +81,9 @@ export default function Home() {
             <p className="eyebrow">Browse the collection</p>
             <h2>Pick your flavor.</h2>
           </div>
-          <div className="filters" role="group" aria-label="Filter products by category">
-            {categories.map((item) => (
-              <button key={item} className={category === item ? "active" : ""} onClick={() => setCategory(item)} aria-pressed={category === item}>{item}</button>
-            ))}
-          </div>
         </div>
 
-        <div className="productGrid">
+        <div className="productGrid single">
           {visibleProducts.map((product) => {
             const isFavorite = favorites.includes(product.id);
             return (
@@ -130,8 +112,8 @@ export default function Home() {
         <div className="gamingCopy">
           <p className="eyebrow">New side quest unlocked</p>
           <h2 id="gaming-title">Player one<br />entered the shop.</h2>
-          <p>Controllers, keyboards, headsets, handhelds, and other desk-battle essentials. Still placeholders. Already overpowered.</p>
-          <button onClick={() => { setCategory("All"); document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" }); }}>Shop gaming gear <span>→</span></button>
+          <p>One mouse. One mission. A clean gaming setup with no filler and no distractions. Still a placeholder. Already overpowered.</p>
+          <button onClick={() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" })}>Shop the mouse <span>→</span></button>
         </div>
         <div className="promoConsole" aria-hidden="true">
           <span className="consoleScreen"><i>COOL<br />MODE</i></span>
