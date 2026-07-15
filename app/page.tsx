@@ -3,26 +3,22 @@
 import { useMemo, useState } from "react";
 
 const products = [
-  { id: 1, name: "Placeholder Blob Lamp", price: 38, category: "Desk", color: "coral", image: "/products/product-01.webp" },
-  { id: 2, name: "Placeholder Cloud Cap", price: 24, category: "Wear", color: "violet", image: "/products/product-02.webp" },
-  { id: 3, name: "Placeholder Bolt Sculpture", price: 52, category: "Strange", color: "lemon", image: "/products/product-03.webp" },
-  { id: 4, name: "Placeholder Stack Tray", price: 31, category: "Desk", color: "mint", image: "/products/product-04.webp" },
-  { id: 5, name: "Placeholder Orbit Bag", price: 46, category: "Wear", color: "sky", image: "/products/product-05.webp" },
-  { id: 6, name: "Placeholder Wobble Vase", price: 19, category: "Strange", color: "orange", image: "/products/product-06.webp" },
-  { id: 7, name: "Placeholder Halo Clock", price: 64, category: "Desk", color: "violet", image: "/products/product-07.webp" },
-  { id: 8, name: "Placeholder Bubble Beanie", price: 29, category: "Wear", color: "coral", image: "/products/product-08.webp" },
-  { id: 9, name: "Placeholder Pro Controller", price: 59, category: "Gaming", color: "mint", image: "/products/product-09.webp" },
-  { id: 10, name: "Placeholder RGB Keyboard", price: 89, category: "Gaming", color: "violet", image: "/products/product-10.webp" },
-  { id: 11, name: "Placeholder Level-Up Headset", price: 74, category: "Gaming", color: "coral", image: "/products/product-11.webp" },
-  { id: 12, name: "Placeholder Pocket Console", price: 129, category: "Gaming", color: "lemon", image: "/products/product-12.webp" },
-  { id: 13, name: "Placeholder Speed Mouse", price: 42, category: "Gaming", color: "sky", image: "/products/product-13.webp" },
-  { id: 14, name: "Placeholder Pixel Light", price: 36, category: "Gaming", color: "orange", image: "/products/product-14.webp" },
+  { id: 1, name: "Placeholder Pro Controller", price: 59, category: "Controllers", color: "mint", shape: "controller" },
+  { id: 2, name: "Placeholder Arcade Pad", price: 72, category: "Controllers", color: "coral", shape: "controller" },
+  { id: 3, name: "Placeholder RGB Keyboard", price: 89, category: "PC Gear", color: "violet", shape: "keyboard" },
+  { id: 4, name: "Placeholder Speed Mouse", price: 42, category: "PC Gear", color: "sky", shape: "mouse" },
+  { id: 5, name: "Placeholder Level-Up Headset", price: 74, category: "Audio", color: "coral", shape: "headset" },
+  { id: 6, name: "Placeholder Battle Speakers", price: 99, category: "Audio", color: "mint", shape: "stack" },
+  { id: 7, name: "Placeholder Pocket Console", price: 129, category: "Controllers", color: "lemon", shape: "handheld" },
+  { id: 8, name: "Placeholder Pixel Light", price: 36, category: "Decor", color: "orange", shape: "pixel" },
+  { id: 9, name: "Placeholder Cable Dock", price: 28, category: "PC Gear", color: "lemon", shape: "arch" },
+  { id: 10, name: "Placeholder Thumbstick Caps", price: 18, category: "Controllers", color: "violet", shape: "orb" },
 ];
 
-const categories = ["New", "Gaming", "Desk", "Wear", "Strange"];
+const categories = ["All", "Controllers", "PC Gear", "Audio", "Decor"];
 
 export default function Home() {
-  const [category, setCategory] = useState("New");
+  const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [cart, setCart] = useState<number[]>([]);
@@ -30,7 +26,7 @@ export default function Home() {
 
   const visibleProducts = useMemo(() => {
     return products.filter((product) => {
-      const categoryMatch = category === "New" || product.category === category;
+      const categoryMatch = category === "All" || product.category === category;
       const queryMatch = `${product.name} ${product.category}`.toLowerCase().includes(query.toLowerCase());
       return categoryMatch && queryMatch;
     });
@@ -77,10 +73,10 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="heroCopy">
-          <p className="eyebrow"><span>Curated curiosities</span> / Edition 001</p>
-          <h1>Objects worth<br />talking about.</h1>
-          <p className="heroText">A tiny shop for useful, unusual, and delightfully unnecessary things. The products are placeholders. The taste is real.</p>
-          <a className="primaryCta" href="#shop">See the cool stuff <span aria-hidden="true">↘</span></a>
+          <p className="eyebrow"><span>Gaming gear only</span> / Drop 001</p>
+          <h1>Gear worth<br />playing with.</h1>
+          <p className="heroText">Controllers, keyboards, headsets, handhelds, and desk-battle essentials. The products are placeholders. The gamer energy is real.</p>
+          <a className="primaryCta" href="#shop">See the gaming gear <span aria-hidden="true">↘</span></a>
         </div>
         <div className="heroArt" aria-label="Abstract colorful placeholder object">
           <span className="sticker stickerOne">NO BORING<br />OBJECTS</span>
@@ -112,7 +108,7 @@ export default function Home() {
               <article className="productCard" key={product.id}>
                 <div className={`productVisual ${product.color}`}>
                   <span className="placeholderTag">PLACEHOLDER</span>
-                  <img className="productPhoto" src={product.image} alt="" loading="lazy" />
+                  <span className={`productShape ${product.shape}`} aria-hidden="true" />
                   <button className={`favorite ${isFavorite ? "selected" : ""}`} onClick={() => toggleFavorite(product.id)} aria-label={`${isFavorite ? "Remove" : "Add"} ${product.name} ${isFavorite ? "from" : "to"} favorites`} aria-pressed={isFavorite}>{isFavorite ? "♥" : "♡"}</button>
                 </div>
                 <div className="productInfo">
@@ -135,7 +131,7 @@ export default function Home() {
           <p className="eyebrow">New side quest unlocked</p>
           <h2 id="gaming-title">Player one<br />entered the shop.</h2>
           <p>Controllers, keyboards, headsets, handhelds, and other desk-battle essentials. Still placeholders. Already overpowered.</p>
-          <button onClick={() => { setCategory("Gaming"); document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" }); }}>Shop gaming gear <span>→</span></button>
+          <button onClick={() => { setCategory("All"); document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" }); }}>Shop gaming gear <span>→</span></button>
         </div>
         <div className="promoConsole" aria-hidden="true">
           <span className="consoleScreen"><i>COOL<br />MODE</i></span>
@@ -149,9 +145,9 @@ export default function Home() {
         <div className="manifestoBadge">SMALL<br />SHOP<br />BIG<br />ENERGY</div>
         <div>
           <p className="eyebrow">Our extremely serious manifesto</p>
-          <h2>Life is too short<br />for boring stuff.</h2>
+          <h2>Gaming is too fun<br />for boring gear.</h2>
         </div>
-        <p>We believe everyday objects should make you pause, grin, and ask, “Wait—where did you get that?” Once these placeholders become real products, that’s exactly what they’ll do.</p>
+        <p>Every setup deserves gear with personality. Once these placeholders become real products, they’ll make desks brighter, sessions smoother, and loadouts unmistakably yours.</p>
       </section>
 
       <section className="newsletter" id="newsletter">
