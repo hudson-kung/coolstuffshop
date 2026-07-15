@@ -60,6 +60,7 @@ h2 { font-size:clamp(45px,5vw,76px);line-height:.9; }
 .placeholderTag { position:absolute;top:13px;left:13px;background:white;border:2px solid var(--ink);padding:5px 7px;font-size:9px;font-weight:900;letter-spacing:.09em; }
 .favorite { position:absolute;top:12px;right:12px;width:38px;height:38px;border:2px solid var(--ink);border-radius:50%;background:white;font-size:23px;cursor:pointer;z-index:3; }
 .favorite.selected { background:var(--ink);color:var(--coral); }
+.productPhoto{width:100%;height:100%;display:block;object-fit:cover;filter:saturate(1.08) contrast(1.02);transition:transform .3s ease}.productCard:hover .productPhoto{transform:scale(1.05)}
 .productShape { display:block;width:120px;height:145px;background:var(--paper);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);transition:transform .18s; }
 .productCard:hover .productShape { transform:rotate(5deg) scale(1.03); }
 .productShape.orb{border-radius:50% 50% 45% 55%}.productShape.arch{border-radius:60px 60px 10px 10px}.productShape.bolt{clip-path:polygon(48% 0,100% 0,69% 39%,100% 39%,31% 100%,45% 54%,8% 54%)}.productShape.stack{height:115px;border-radius:14px;box-shadow:0 24px 0 -3px var(--paper),0 24px 0 0 var(--ink),7px 31px 0 var(--ink)}.productShape.loop{border-radius:50%;background:transparent;border-width:28px}.productShape.blob{border-radius:70% 30% 65% 35%/38% 64% 36% 62%;transform:rotate(18deg)}

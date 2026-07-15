@@ -3,20 +3,20 @@
 import { useMemo, useState } from "react";
 
 const products = [
-  { id: 1, name: "Placeholder Blob Lamp", price: 38, category: "Desk", color: "coral", shape: "orb" },
-  { id: 2, name: "Placeholder Cloud Cap", price: 24, category: "Wear", color: "violet", shape: "arch" },
-  { id: 3, name: "Placeholder Bolt Sculpture", price: 52, category: "Strange", color: "lemon", shape: "bolt" },
-  { id: 4, name: "Placeholder Stack Tray", price: 31, category: "Desk", color: "mint", shape: "stack" },
-  { id: 5, name: "Placeholder Orbit Bag", price: 46, category: "Wear", color: "sky", shape: "loop" },
-  { id: 6, name: "Placeholder Wobble Vase", price: 19, category: "Strange", color: "orange", shape: "blob" },
-  { id: 7, name: "Placeholder Halo Clock", price: 64, category: "Desk", color: "violet", shape: "loop" },
-  { id: 8, name: "Placeholder Bubble Beanie", price: 29, category: "Wear", color: "coral", shape: "orb" },
-  { id: 9, name: "Placeholder Pro Controller", price: 59, category: "Gaming", color: "mint", shape: "controller" },
-  { id: 10, name: "Placeholder RGB Keyboard", price: 89, category: "Gaming", color: "violet", shape: "keyboard" },
-  { id: 11, name: "Placeholder Level-Up Headset", price: 74, category: "Gaming", color: "coral", shape: "headset" },
-  { id: 12, name: "Placeholder Pocket Console", price: 129, category: "Gaming", color: "lemon", shape: "handheld" },
-  { id: 13, name: "Placeholder Speed Mouse", price: 42, category: "Gaming", color: "sky", shape: "mouse" },
-  { id: 14, name: "Placeholder Pixel Light", price: 36, category: "Gaming", color: "orange", shape: "pixel" },
+  { id: 1, name: "Placeholder Blob Lamp", price: 38, category: "Desk", color: "coral", image: "/products/product-01.webp" },
+  { id: 2, name: "Placeholder Cloud Cap", price: 24, category: "Wear", color: "violet", image: "/products/product-02.webp" },
+  { id: 3, name: "Placeholder Bolt Sculpture", price: 52, category: "Strange", color: "lemon", image: "/products/product-03.webp" },
+  { id: 4, name: "Placeholder Stack Tray", price: 31, category: "Desk", color: "mint", image: "/products/product-04.webp" },
+  { id: 5, name: "Placeholder Orbit Bag", price: 46, category: "Wear", color: "sky", image: "/products/product-05.webp" },
+  { id: 6, name: "Placeholder Wobble Vase", price: 19, category: "Strange", color: "orange", image: "/products/product-06.webp" },
+  { id: 7, name: "Placeholder Halo Clock", price: 64, category: "Desk", color: "violet", image: "/products/product-07.webp" },
+  { id: 8, name: "Placeholder Bubble Beanie", price: 29, category: "Wear", color: "coral", image: "/products/product-08.webp" },
+  { id: 9, name: "Placeholder Pro Controller", price: 59, category: "Gaming", color: "mint", image: "/products/product-09.webp" },
+  { id: 10, name: "Placeholder RGB Keyboard", price: 89, category: "Gaming", color: "violet", image: "/products/product-10.webp" },
+  { id: 11, name: "Placeholder Level-Up Headset", price: 74, category: "Gaming", color: "coral", image: "/products/product-11.webp" },
+  { id: 12, name: "Placeholder Pocket Console", price: 129, category: "Gaming", color: "lemon", image: "/products/product-12.webp" },
+  { id: 13, name: "Placeholder Speed Mouse", price: 42, category: "Gaming", color: "sky", image: "/products/product-13.webp" },
+  { id: 14, name: "Placeholder Pixel Light", price: 36, category: "Gaming", color: "orange", image: "/products/product-14.webp" },
 ];
 
 const categories = ["New", "Gaming", "Desk", "Wear", "Strange"];
@@ -31,7 +31,7 @@ export default function Home() {
   const visibleProducts = useMemo(() => {
     return products.filter((product) => {
       const categoryMatch = category === "New" || product.category === category;
-      const queryMatch = product.name.toLowerCase().includes(query.toLowerCase());
+      const queryMatch = `${product.name} ${product.category}`.toLowerCase().includes(query.toLowerCase());
       return categoryMatch && queryMatch;
     });
   }, [category, query]);
@@ -112,7 +112,7 @@ export default function Home() {
               <article className="productCard" key={product.id}>
                 <div className={`productVisual ${product.color}`}>
                   <span className="placeholderTag">PLACEHOLDER</span>
-                  <span className={`productShape ${product.shape}`} aria-hidden="true" />
+                  <img className="productPhoto" src={product.image} alt="" loading="lazy" />
                   <button className={`favorite ${isFavorite ? "selected" : ""}`} onClick={() => toggleFavorite(product.id)} aria-label={`${isFavorite ? "Remove" : "Add"} ${product.name} ${isFavorite ? "from" : "to"} favorites`} aria-pressed={isFavorite}>{isFavorite ? "♥" : "♡"}</button>
                 </div>
                 <div className="productInfo">
